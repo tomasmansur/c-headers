@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 
-int socket_and_bind(void * port,int address_family, int socktype, int aiflags)
+int socket_and_bind_ipv4(void * port,int address_family, int socktype)
 {
     struct addrinfo hints;
     struct addrinfo *res;
@@ -16,9 +16,9 @@ int socket_and_bind(void * port,int address_family, int socktype, int aiflags)
     int status;
 
     memset(&hints,0,sizeof(hints));
-    hints.ai_family = address_family;
-    hints.ai_socktype = socktype;
-    hints.ai_flags = aiflags;
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_DGRAM;
+    hints.ai_flags = AI_NUMERICHOST;
 
     status = getaddrinfo(NULL,port,&hints,&res);
     if( status != 0)
