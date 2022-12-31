@@ -4,7 +4,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
-short socketCreate(void)
+short socketTcp4Create(void)
 {
     int hSocket;
     hSocket = socket(AF_INET, SOCK_STREAM, 0);
